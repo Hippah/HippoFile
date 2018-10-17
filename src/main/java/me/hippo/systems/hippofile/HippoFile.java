@@ -140,6 +140,18 @@ public final class HippoFile {
         fileWriter.close();
         return this;
     }
+    
+    /**
+     * Checks if the file is empty.
+     * @return  If the file is empty.
+     * @throws IOException  If the reading fails.
+     */
+    public boolean isEmpty() throws IOException {
+        final FileReader fileReader = new FileReader(path);
+        final int read = fileReader.read();
+        fileReader.close();
+        return read == -1;
+    }
 
     /**
      * Clears the hippo file.
