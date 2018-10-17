@@ -77,14 +77,7 @@ public final class Main {
                 .addObject(hippoFileObject)
                 .addObject(anotherObject)
                 .encrypt();
-
-        final HippoFile test = HippoFileService.getFile("/home/hippo/Desktop/HippoClient/jars/Hippo/Modules.hippo");
-        for (HippoFileObject object : test.getContent()) {
-            for(final HippoFileElement e : object.getElements()){
-                System.out.println(object.getName() + " " + e.getName());
-            }
-        }
-
+        
         for(final HippoFileObject content : hippoFile.getContent()){
             System.out.println(content.getContent() + "\n");
             for(final HippoFileElement element : content.getElements()){
