@@ -59,7 +59,7 @@ public final class HippoFileService {
      */
     public static HippoFile getFile(final File path, final Encrypter... encrypters) throws IOException, HippoFileException {
         final ArrayList<String> lines = new ArrayList<>();
-        if(encrypters != null){
+        if(encrypters.length > 0){
             final StringBuilder content = new StringBuilder();
             for(final String line : Files.readAllLines(path.toPath())){
                 content.append(line).append("\n");
