@@ -58,9 +58,8 @@ public final class Main {
     /**
      * Creates a new {@link HippoFile}.
      * @throws IOException  If the creation of the file fails.
-     * @throws HippoFileException  If the creation of the file fails.
      */
-    private static void createFiles() throws IOException, HippoFileException {
+    private static void createFiles() throws IOException {
         System.out.println("#Creating a HippoFile: \n");
 
         final HippoFileElement hippoFileElement = new HippoFileElement("SomeElement", "SomeValue", 69, true);

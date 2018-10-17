@@ -31,6 +31,7 @@ import me.hippo.systems.hippofile.service.HippoFileService;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author Hippo
@@ -60,9 +61,9 @@ public final class HippoFile {
     private File path;
 
     /**
-     * An {@link ArrayList} of {@link HippoFileObject} to store all of the files content.
+     * An {@link CopyOnWriteArrayList} of {@link HippoFileObject} to store all of the files content.
      */
-    private final ArrayList<HippoFileObject> content = new ArrayList<>();
+    private final CopyOnWriteArrayList<HippoFileObject> content = new CopyOnWriteArrayList<>();
 
     /**
      * Sets the name of the file.
@@ -232,7 +233,7 @@ public final class HippoFile {
      * Gets the {@code content}.
      * @return  The content.
      */
-    public ArrayList<HippoFileObject> getContent() {
+    public CopyOnWriteArrayList<HippoFileObject> getContent() {
         return content;
     }
 }
