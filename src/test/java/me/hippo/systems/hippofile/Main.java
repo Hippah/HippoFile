@@ -77,7 +77,7 @@ public final class Main {
                 .addObject(hippoFileObject)
                 .addObject(anotherObject)
                 .encrypt();
-        
+
         for(final HippoFileObject content : hippoFile.getContent()){
             System.out.println(content.getContent() + "\n");
             for(final HippoFileElement element : content.getElements()){

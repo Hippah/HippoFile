@@ -89,38 +89,23 @@ public final class HippoFileObject {
             boundBuilder.append(character);
         }
         boundBuilder.delete(0, 1).delete(boundBuilder.length() - 1, boundBuilder.length());
+        final String[] elements = boundBuilder.toString().split("\\)\\(");
+        for(final String element : elements){
+            final StringBuilder nameBuilder = new StringBuilder();
+            final String[] elementIndexes = element.split("\\[");
+            nameBuilder.append(elementIndexes[0]);
 
-        final StringBuilder nameBuilder = new StringBuilder();
-        int nameEnd = 0;
-        for(final char character : boundBuilder.toString().toCharArray()){
-            if(character == '[' || character == '('){
-                break;
-            }
-            nameBuilder.append(character);
-            nameEnd++;
-        }
-        boundBuilder.delete(0, nameEnd + 1);
-        final ArrayList<String> values = new ArrayList<>();
-        final StringBuilder valueBuilder = new StringBuilder();
-        int childIndex = -1;
-        for(int i = 0; i < boundBuilder.toString().length(); i++){
-            final char value = boundBuilder.toString().charAt(i);
-            if(value == ']'){
+            final StringBuilder valueBuilder = new StringBuilder();
+            final ArrayList<String> values = new ArrayList<>();
+            for(int i = 1; i < elementIndexes.length; i++){
+                final String value = elementIndexes[i];
+                valueBuilder.append(value).delete(valueBuilder.length() - 1, valueBuilder.length());
                 values.add(valueBuilder.toString());
                 valueBuilder.delete(0, valueBuilder.length());
-            }else if(value == '('){
-                childIndex = i;
-                break;
-            }else if(value != '['){
-                valueBuilder.append(value);
             }
+            final HippoFileElement hippoFileElement = new HippoFileElement(nameBuilder.toString(), values.toArray());
+            this.elements.add(hippoFileElement);
         }
-        final HippoFileElement hippoFileElement = new HippoFileElement(nameBuilder.toString(), values);
-        if(childIndex > -1) {
-            boundBuilder.delete(0, childIndex);
-            scanElements(boundBuilder.toString().toCharArray());
-        }
-        elements.add(hippoFileElement);
     }
 
     /**

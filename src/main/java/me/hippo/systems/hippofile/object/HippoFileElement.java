@@ -50,14 +50,9 @@ public final class HippoFileElement {
      * @param values  The values.
      * @throws HippoFileException  If the creation fails.
      */
-    public HippoFileElement(final String name, final Object... values) throws HippoFileException {
+    public HippoFileElement(final String name, final Object... values) {
         this.name = name;
         this.values = values;
-        for(final Object value : values){
-            if(value instanceof HippoFileElement){
-                throw new HippoFileException("Error, you cannot have a 'HippoFileElement' as a value of a HippoFileElement, if you want to attach the element please add it as a child.\nmyElement.addChild(anotherElement);");
-            }
-        }
     }
 
     /**
@@ -89,6 +84,7 @@ public final class HippoFileElement {
      * @return  The values.
      */
     public Object[] getValues() {
+
         return values;
     }
 }
