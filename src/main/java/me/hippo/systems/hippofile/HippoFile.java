@@ -29,9 +29,7 @@ import me.hippo.systems.hippofile.exception.HippoFileException;
 import me.hippo.systems.hippofile.object.HippoFileObject;
 import me.hippo.systems.hippofile.service.HippoFileService;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -140,18 +138,6 @@ public final class HippoFile {
         fileWriter.close();
         return this;
     }
-    
-    /**
-     * Checks if the file is empty.
-     * @return  If the file is empty.
-     * @throws IOException  If the reading fails.
-     */
-    public boolean isEmpty() throws IOException {
-        final FileReader fileReader = new FileReader(path);
-        final int read = fileReader.read();
-        fileReader.close();
-        return read == -1;
-    }
 
     /**
      * Clears the hippo file.
@@ -163,6 +149,18 @@ public final class HippoFile {
     public void clear() throws IOException{
         final FileWriter fileWriter = new FileWriter(getPath());
         fileWriter.close();
+    }
+
+    /**
+     * Checks if the file is empty.
+     * @return  If the file is empty.
+     * @throws IOException  If the reading fails.
+     */
+    public boolean isEmpty() throws IOException {
+        final FileReader fileReader = new FileReader(path);
+        final int read = fileReader.read();
+        fileReader.close();
+        return read == -1;
     }
 
     /**

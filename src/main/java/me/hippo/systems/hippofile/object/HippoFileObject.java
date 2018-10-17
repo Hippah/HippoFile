@@ -100,7 +100,6 @@ public final class HippoFileObject {
             nameEnd++;
         }
         boundBuilder.delete(0, nameEnd + 1);
-
         final ArrayList<String> values = new ArrayList<>();
         final StringBuilder valueBuilder = new StringBuilder();
         int childIndex = -1;
@@ -117,11 +116,10 @@ public final class HippoFileObject {
             }
         }
         final HippoFileElement hippoFileElement = new HippoFileElement(nameBuilder.toString(), values);
-        if(childIndex > -1){
+        if(childIndex > -1) {
             boundBuilder.delete(0, childIndex);
-            hippoFileElement.scanChildElements(boundBuilder.toString());
+            scanElements(boundBuilder.toString().toCharArray());
         }
-
         elements.add(hippoFileElement);
     }
 

@@ -64,11 +64,7 @@ public final class Main {
         System.out.println("#Creating a HippoFile: \n");
 
         final HippoFileElement hippoFileElement = new HippoFileElement("SomeElement", "SomeValue", 69, true);
-        final HippoFileElement childOfChild = new HippoFileElement("ChildOfChild", "cool value");
-        final HippoFileElement childElement = new HippoFileElement("Child", "SomeChildValue")
-                .addChild(childOfChild);
-        final HippoFileElement anotherElement = new HippoFileElement("AnotherElement", 69)
-                .addChild(childElement);
+        final HippoFileElement anotherElement = new HippoFileElement("AnotherElement", 69);
 
         final HippoFileObject hippoFileObject = new HippoFileObject("SomeObject")
                 .addElement(hippoFileElement);
@@ -82,6 +78,12 @@ public final class Main {
                 .addObject(anotherObject)
                 .encrypt();
 
+        final HippoFile test = HippoFileService.getFile("/home/hippo/Desktop/HippoClient/jars/Hippo/Modules.hippo");
+        for (HippoFileObject object : test.getContent()) {
+            for(final HippoFileElement e : object.getElements()){
+                System.out.println(object.getName() + " " + e.getName());
+            }
+        }
 
         for(final HippoFileObject content : hippoFile.getContent()){
             System.out.println(content.getContent() + "\n");
@@ -92,7 +94,6 @@ public final class Main {
             }
         }
 
-        System.out.println(anotherObject.getElement("AnotherElement").getChild("Child").getChild("ChildOfChild").getContent());
     }
 
     /**

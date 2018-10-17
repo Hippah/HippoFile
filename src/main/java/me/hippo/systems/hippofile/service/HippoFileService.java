@@ -69,7 +69,7 @@ public final class HippoFileService {
                 decrypt = encrypter.decrypt(content.toString());
             }
             lines.addAll(Arrays.asList(decrypt.split("\n")));
-        }else{
+        }else {
             lines.addAll(Files.readAllLines(path.toPath()));
         }
 
@@ -113,7 +113,7 @@ public final class HippoFileService {
             for(int i = startObject + 1; i < line.length(); i++) {
                 final char character = line.charAt(i);
                 elementList.add(character);
-            }
+             }
             final char[] elementChars = new char[elementList.size() - 1];
             for(int i = 0; i < elementList.size() - 1; i++){
 
